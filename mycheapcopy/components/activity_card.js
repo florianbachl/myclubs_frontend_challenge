@@ -7,7 +7,7 @@ export default function ActivityCard({ openPopup,item }) {
       <div>
         <div className={"d-flex flex-md-row flex-column align-items-start align-items-md-center justify-content-start my-3 " + styles.categorywrapper+" "+ styles.grid}>
           {item._source.categories.map((i) => (
-            <div className={"col-auto px-2 my-1 "+styles.category}>
+            <div key={i} className={"col-auto px-2 my-1 "+styles.category}>
               {i.split("-")[1].toUpperCase()}
             </div>
           ))}

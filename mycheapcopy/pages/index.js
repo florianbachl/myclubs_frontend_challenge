@@ -9,7 +9,9 @@ import ActivityExpand from "../components/activity_expand";
 export default function Home() {
   const [showPopup, setShowPopup] = React.useState(false);
   const [showMenu, setShowMenu] = React.useState(false);
-  const [selectedActivity, setSelectedActivity] = React.useState(activities.hits.hits)
+  const [selectedActivity, setSelectedActivity] = React.useState(
+    activities.hits.hits
+  );
   const [ac, setAC] = React.useState(activities.hits.hits);
   let searchText = "";
   function openPopup(item) {
@@ -17,7 +19,7 @@ export default function Home() {
     setShowPopup(true);
   }
   function closePopup() {
-    setSelectedActivity(null)
+    setSelectedActivity(null);
     setShowPopup(false);
   }
   function openMenu() {
@@ -65,13 +67,25 @@ export default function Home() {
           </button>
         </div>
         <div className="d-block d-lg-none">
-          <img src="svg/menu.svg" className={styles.materialsize+" "+styles.clickable }  onClick={() => openMenu()} />
+          <Image
+            alt=""
+            width={25}
+            height= {25}
+            src="/svg/menu.svg"
+            className={styles.materialsize + " " + styles.clickable}
+            onClick={() => openMenu()}
+          />
         </div>
         {showMenu ? (
-          <div className={styles.menu+" d-lg-none"}>
+          <div className={styles.menu + " d-lg-none"}>
             <ul className="navbar-nav d-flex flex-column align-items-start justify-content-start">
               <li className="nav-item">
-                <a className={"nav-link " + styles.insidemenu +" "+ styles.activenav} href="#">
+                <a
+                  className={
+                    "nav-link " + styles.insidemenu + " " + styles.activenav
+                  }
+                  href="#"
+                >
                   catalogue
                 </a>
               </li>
@@ -91,7 +105,7 @@ export default function Home() {
         <div className="col-12 col-xl-10 p-3 m-auto">
           {" "}
           <h1 className={styles.h1}>
-            Your perfect work out
+            Your perfect workout
             <br /> is waiting for you
           </h1>
           <div
@@ -104,7 +118,13 @@ export default function Home() {
                 styles.searchbar
               }
             >
-              <img src="svg/search.svg" className={styles.materialsize} />
+              <Image
+                alt=""
+                width={25}
+            height= {25}
+                src="/svg/search.svg"
+                className={styles.materialsize}
+              />
               <input
                 className={"form-control mr-sm-2 " + styles.searchbarinput}
                 type="search"
@@ -116,15 +136,18 @@ export default function Home() {
           </div>
         </div>
       </header>
-     
+
       <main className={styles.main}>
         <section className={"col-12 col-xl-10 row mx-xl-auto" + styles.grid}>
           {ac.map((item) => (
-            <ActivityCard openPopup={() => openPopup(item)} item={item} />
+            <ActivityCard key={item} openPopup={() => openPopup(item)} item={item} />
           ))}
         </section>
         {showPopup ? (
-          <ActivityExpand closePopup={() => closePopup()} selectedActivity={selectedActivity} />
+          <ActivityExpand
+            closePopup={() => closePopup()}
+            selectedActivity={selectedActivity}
+          />
         ) : (
           ""
         )}
